@@ -1,7 +1,7 @@
 require.config({
   baseUrl: 'js/lib',
   paths: {
-    templates: '../flusion/app/templates',
+    templates: '../uber-price/app/templates',
     backbone: 'backbone/backbone',
     marionette: 'marionette/backbone.marionette',
     jquery: 'jquery-2.1.4',
@@ -60,9 +60,9 @@ require.config({
 requirejs([
   'backbone',
   'jquery',
-  '../flusion/app/App',
-  '../flusion/app/Router',
-  '../flusion/app/controllers/AppController'
+  '../uber-price/app/App',
+  '../uber-price/app/Router',
+  '../uber-price/app/controllers/AppController'
 ], function(Backbone, $, App, AppRouter, AppController){
 
   App.addInitializer(function(){
