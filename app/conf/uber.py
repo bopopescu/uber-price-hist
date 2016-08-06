@@ -2,8 +2,8 @@
 config = {
     "mysql": {
         "user" : "uber",
+        "host" : "127.0.0.1",
         "password" : "",
-        "host" : "localhost",
         "port" : 3306,
         "db" : "uber"
     }

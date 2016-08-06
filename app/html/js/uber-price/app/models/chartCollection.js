@@ -13,10 +13,11 @@ define([
         },
         url: function() {
             console.log(this.params);
-            urlStr = '/ili_weekly?' +
-                'start_date=' + (this.params.startDate) +
-                '&end_date=' + (this.params.endDate) +
-                '&state=' + (this.params.state || '');
+            urlStr = '/sample?' //+
+                //'start_date=' + (this.params.startDate) +
+                //'&end_date=' + (this.params.endDate) +
+                //'&state=' + (this.params.state || '')
+            ;
             return urlStr;
         }
     })

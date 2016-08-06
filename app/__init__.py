@@ -26,13 +26,15 @@ def root(start_date = None):
 
 
 # ***** API ******
-@app.route('/ili', methods=['GET'])
+@app.route('/sample', methods=['GET'])
 def ili():
-	start_date = Req.getParameter('start_date')
-	end_date = Req.getParameter('end_date')
 	Db = MySQLClass(config['mysql'])
-	rows = Db.getAllRows(sql['SELECT.SUM.ILI'],(start_date,end_date))
-	return str(rows[0]['ili'])
+	rows = Db.getAllRows(sql['SELECT.SAMPLE_DATA'])
+	result = {}
+	result['data'] = rows
+	result['success'] = 'success'
+	print(result)
+	return str(json.dumps(result))
 	#return Req.json(rows)
 
 @app.route('/ili_weekly', methods=['GET'])

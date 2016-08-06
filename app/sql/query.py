@@ -1,35 +1,20 @@
 sql = {}
 
-sql['SELECT.SUM.ILI'] = """
+sql['SELECT.SAMPLE_QUERY'] = """
 SELECT sum(ili) as ili
   FROM fny_ilinet_cdclab_athena
  WHERE 1=1
    and week_of between %s and %s
 """
 
-sql['SELECT.SUM.ILI.WEEK'] = """
-SELECT week_of,
-	   sum(ili) as ili
-  FROM fny_ilinet_cdclab_athena
- WHERE 1=1
-   and week_of between %s and %s
-   and (state_abbr = %s or '' = %s)
- group by week_of
-"""
-
-sql['SELECT.OPTIONS'] = """
-SELECT min(week_of) as min_date,
-       max(weeK_of) as max_date
-  FROM fny_ilinet_cdclab_athena
-"""
-
-sql['SELECT.US.STATES'] = """
-SELECT state_abbr,
-	   sum(ili) as ili
-  FROM fny_ilinet_cdclab_athena
- WHERE 1=1
-   and (week_of between %s and %s)
- group by state_abbr
+sql['SELECT.SAMPLE_DATA'] = """
+select est_time,
+       estimate
+  from estimates
+ where 1=1
+   and product in ('uberPool', 'POOL')
+   and route_sk = 1
+ limit 100
 """
 
 sql['SELECT.ONE'] = """

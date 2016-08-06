@@ -8,15 +8,10 @@ require.config({
     jqueryui: 'jquery-ui',
     underscore: 'underscore',
     bootstrap: 'bootstrap/bootstrap',
-
-    //highcharts: 'highcharts/highcharts.src',
     highcharts: 'https://code.highcharts.com/highcharts.src',
-
     highmaps: 'https://code.highcharts.com/maps/modules/map.src',
-    //highmaps: 'highcharts/highmaps.src'
-    //usmaps: 'highcharts/modules/maps/us-all',
     usmaps: 'https://code.highcharts.com/mapdata/countries/us/us-all'
-    //standalone: 'highcharts/adapters/standalone-framework.src'
+
 
   },
   shim: {
@@ -49,10 +44,6 @@ require.config({
     usmaps: {
       deps: ['highcharts','highmaps']
     }
-    //usmaps: {
-    //  deps: ['highcharts','highmaps','jquery']
-    //},
-
   }
 });
 
