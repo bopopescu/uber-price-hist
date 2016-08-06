@@ -3,7 +3,7 @@ from flask import g, redirect, url_for, request, session, json, jsonify, request
 
 from lib.mysql import MySQLClass
 import lib.req_handler as jsoner
-from conf.arc_dev import config
+from conf.uber import config
 import lib.req_handler as Req
 from sql.query import sql
 import simplejson
