@@ -4,66 +4,55 @@ define([
     'backbone',
     'underscore',
     'highcharts',
-    'highmaps',
     'bootstrap',
+
 
     '../models/chartCollection',
     '../models/optionsCollection',
-    '../models/mapCollection',
 
     '../views/TimeseriesChartView',
-    '../views/FilterView',
-    '../views/MapView',
-
-    'usmaps'
+    '../views/FilterView'
 ], function(
     App,
     Marionette,
     Backbone,
     _,
     highcharts,
-    highmaps,
     bootstrap,
 
     ChartCollection,
     OptionsCollection,
-    MapCollection,
 
     TimeSeriesChartVew,
-    FilterView,
-    MapView,
-
-    USMaps
+    FilterView
 ) {
   return Marionette.Controller.extend({
     main: function(query) {
 
-      //****** TEST *******
-      //*******************
-
-      var params = this.getQueryString(query);
+      //var params = this.getQueryString(query);
 
       this.optionsCollection = new OptionsCollection();
-      //this.optionsCollection.fetch();
+      this.optionsCollection.fetch();
 
       this.collection = new ChartCollection();
 
       this.collection.params = {
-        startDate:'2014-02-01',
-        endDate: '2014-05-05'
+        startDate:'2016-08-01',
+        endDate: '2016-08-05'
       };
-
-
-      this.mapCollection = new MapCollection();
-      this.mapCollection.params = this.collection.params;
-
-      //this.listenTo(this.collection, 'sync', this.refreshData);
-      this.listenTo(this.mapCollection, 'sync',this.refreshAllData);
-      this.listenTo(this.optionsCollection,'sync',this.renderFilter);
-
-      this.optionsCollection.fetch();
+      //
+      //
+      //this.mapCollection = new MapCollection();
+      //this.mapCollection.params = this.collection.params;
+      //
+      this.listenTo(this.collection, 'sync', this.renderTimeSeriesChart);
+      this.listenTo(this.collection, 'sync', this.renderFilter);
+      //this.listenTo(this.mapCollection, 'sync',this.refreshAllData);
+      //this.listenTo(this.optionsCollection,'sync',this.renderFilter);
+      //
+      //this.optionsCollection.fetch();
       this.collection.fetch();
-      this.mapCollection.fetch();
+      //this.mapCollection.fetch();
 
     },
 
@@ -73,26 +62,23 @@ define([
     },
 
     refreshTimeSeriesChart: function() {
+      console.log('refreshing...');
       this.collection.fetch();
       this.renderTimeSeriesChart();
     },
 
     renderTimeSeriesChart: function() {
-      var region = App.getRegion('timelineContainer');
+      var region = App.getRegion('timelineContainer')
       region.show(new TimeSeriesChartVew({
         collection : this.collection
       }))
     },
 
     renderFilter: function(){
-
-      if (this.optionsCollection.toJSON()[0] != undefined){
-        this.collection.minDate = this.optionsCollection.toJSON()[0]['min_date'];
-        this.collection.maxDate = this.optionsCollection.toJSON()[0]['max_date'];
-      }
+      //console.log(this.optionsCollection);
       var region = App.getRegion('filterContainer');
       region.show(new FilterView({
-        collection: this.mapCollection
+        collection: this.optionsCollection
       }))
     },
 

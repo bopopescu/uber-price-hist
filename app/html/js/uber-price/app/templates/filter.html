@@ -1,6 +1,38 @@
 <div id="filter-container">
-<label for="from_input">From</label>
-<input type="text" id="from_input" name="from_input">
-<label for="to_input">to</label>
-<input type="text" id="to_input" name="to_input">
+  <label for="from_input">From</label>
+  <input type="date" class="datepicker" id="from_input" name="from_input">
+  <label for="to_input">To</label>
+  <input type="date" class="datepicker" id="to_input" name="to_input">
+  <div class="input-field col s12" id="route_input" name="route_input">
+    <select>
+      <option value="" disabled selected>Choose your Route Name</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Route Name</label>
+  </div>
+  <!--<div class="input-field col s12" id="day_of_week_input" name="day_of_week_input">-->
+    <!--<select>-->
+      <!--<option value="" disabled selected>Choose your Route Name</option>-->
+      <!--<option value="1">Sunday</option>-->
+      <!--<option value="2">Monday</option>-->
+      <!--<option value="3">Tuesday</option>-->
+      <!--<option value="4">Wednesday</option>-->
+      <!--<option value="5">Thursday</option>-->
+      <!--<option value="6">Friday</option>-->
+      <!--<option value="7">Saturday</option>-->
+    <!--</select>-->
+    <!--<label>Route Name</label>-->
+  <!--</div>-->
+  <div>
+    <select id="example-getting-started" multiple="multiple" id="day_of_week_input" name="day_of_week_input">
+      <option value="cheese">Cheese</option>
+      <option value="tomatoes">Tomatoes</option>
+      <option value="mozarella">Mozzarella</option>
+      <option value="mushrooms">Mushrooms</option>
+      <option value="pepperoni">Pepperoni</option>
+      <option value="onions">Onions</option>
+    </select>
+  </div>
 </div>

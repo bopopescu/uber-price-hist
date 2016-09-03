@@ -19,17 +19,17 @@ define([
       var data= this.collection.toJSON();
       var options = {
         title: {
-          text: 'Report Flu-like Symptoms',
+          text: 'Uber price estimates',
           x: -20 //center
         },
         xAxis: {
-          categories: _.map(data, function(week){
-            return week.week_of
+          categories: _.map(data, function(est){
+            return est.est_time
           })
         },
         yAxis: {
           title: {
-            text: 'Symptoms'
+            text: 'Estimates'
           },
           plotLines: [{
             value: 0,
@@ -44,9 +44,9 @@ define([
           borderWidth: 0
         },
         series: [{
-          name: 'Symptoms',
-          data: _.map(data, function (week){
-            return [week.week_of, week.ili]
+          name: 'Estimates',
+          data: _.map(data, function (est){
+            return [est.est_time, est.estimate]
           })
         }]
       };

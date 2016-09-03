@@ -9,8 +9,7 @@ require.config({
     underscore: 'underscore',
     bootstrap: 'bootstrap/bootstrap',
     highcharts: 'https://code.highcharts.com/highcharts.src',
-    highmaps: 'https://code.highcharts.com/maps/modules/map.src',
-    usmaps: 'https://code.highcharts.com/mapdata/countries/us/us-all'
+    bootstrap_multiselect: 'bootstrap/bootstrap-multiselect'
 
 
   },
@@ -38,11 +37,8 @@ require.config({
     highcharts : {
       deps : ['jquery']
     },
-    highmaps: {
-      deps: ['highcharts']
-    },
-    usmaps: {
-      deps: ['highcharts','highmaps']
+    bootstrap_multiselect : {
+      deps : ['jquery','bootstrap']
     }
   }
 });

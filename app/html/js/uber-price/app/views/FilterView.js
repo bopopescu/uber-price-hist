@@ -3,21 +3,26 @@ define([
   'marionette',
   'underscore',
   'text!templates/filter.html',
+  'jquery',
   'jqueryui',
-  'jquery'
+  'bootstrap_multiselect'
+
 ], function(
     Backbone,
     Marionette,
     _,
     template,
+    $,
     jqueryui,
-    $
+    bootstrap_multiselect
 ){
   return Marionette.ItemView.extend({
     template: _.template(template),
     ui: {
       from_input: 'input[name=from_input]',
-      to_input: 'input[name=to_input]'
+      to_input: 'input[name=to_input]',
+      route_input: 'input[name=route_input]',
+      dow_input: 'input[name=day_of_week_input]'
     },
     events:{
       'change @ui.from_input' : 'filterChanged',
@@ -26,31 +31,34 @@ define([
     onRender: function() {
       var from_ip = this.ui.from_input;
       var to_ip = this.ui.to_input;
-      from_ip.datepicker({
-        defaultDate: this.collection.params.startDate,
-        changeMonth: true,
-        numberOfMonths: 1,
-        minDate: new Date(this.collection.minDate),
-        maxDate: new Date(this.collection.maxDate),
-        dateFormat: "yy-mm-dd",
-        value: this.collection.params.startDate,
-        onClose: function (selectedDate) {
-          to_ip.datepicker("option", "minDate", selectedDate);
-        }
-      });
-      to_ip.datepicker({
-        defaultDate: this.collection.params.endDate,
-        changeMonth: true,
-        numberOfMonths: 1,
-        minDate: new Date(this.collection.minDate),
-        maxDate: new Date(this.collection.maxDate),
-        dateFormat: "yy-mm-dd",
-        onClose: function (selectedDate) {
-          from_ip.datepicker("option", "maxDate", selectedDate);
-        }
-      });
-      from_ip.datepicker("setDate", this.collection.params.startDate);
-      to_ip.datepicker("setDate", this.collection.params.endDate);
+      var route_input = this.ui.route_input;
+      this.ui.dow_input.multiselect();
+      console.log(route_input);
+      //from_ip.datepicker({
+      //  defaultDate: this.collection.params.startDate,
+      //  changeMonth: true,
+      //  numberOfMonths: 1,
+      //  minDate: new Date(this.collection.minDate),
+      //  maxDate: new Date(this.collection.maxDate),
+      //  dateFormat: "yy-mm-dd",
+      //  value: this.collection.params.startDate,
+      //  onClose: function (selectedDate) {
+      //    to_ip.datepicker("option", "minDate", selectedDate);
+      //  }
+      //});
+      //to_ip.datepicker({
+      //  defaultDate: this.collection.params.endDate,
+      //  changeMonth: true,
+      //  numberOfMonths: 1,
+      //  minDate: new Date(this.collection.minDate),
+      //  maxDate: new Date(this.collection.maxDate),
+      //  dateFormat: "yy-mm-dd",
+      //  onClose: function (selectedDate) {
+      //    from_ip.datepicker("option", "maxDate", selectedDate);
+      //  }
+      //});
+      //from_ip.datepicker("setDate", this.collection.params.startDate);
+      //to_ip.datepicker("setDate", this.collection.params.endDate);
     },
     filterChanged: function() {
       var start_date = this.ui.from_input.datepicker("getDate");

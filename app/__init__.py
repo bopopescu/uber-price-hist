@@ -28,15 +28,29 @@ def root(start_date = None):
 # ***** API ******
 @app.route('/sample', methods=['GET'])
 def ili():
+	# print "********************* getting sample ********************* "
+	start_date = Req.getParameter('start_date')
+	end_date = Req.getParameter('end_date')
 	Db = MySQLClass(config['mysql'])
-	rows = Db.getAllRows(sql['SELECT.SAMPLE_DATA'])
+	rows = Db.getAllRows(sql['SELECT.SAMPLE_DATA'],(start_date,end_date))
 	result = {}
 	result['data'] = rows
 	result['success'] = 'success'
-	print(result)
 	return str(json.dumps(result))
-	#return Req.json(rows)
 
+@app.route('/options', methods=['GET'])
+def route_options():
+	Db = MySQLClass(config['mysql'])
+	rows = Db.getAllRows(sql['SELECT.ROUTE_OPTIONS'])
+	result = {}
+	result['data'] = rows
+	result['success'] = 'success'
+	return str(json.dumps(result))
+
+
+
+
+# ***** INHERITED FROM FLUSION ******
 @app.route('/ili_weekly', methods=['GET'])
 def ili_weekly():
 	start_date = Req.getParameter('start_date')
@@ -64,15 +78,15 @@ def ili_by_state():
 	print(result)
 	return str(json.dumps(result))
 
-@app.route('/options', methods=['GET'])
-def options():
-	Db = MySQLClass(config['mysql'])
-	rows = Db.getAllRows(sql['SELECT.OPTIONS'])
-	result = {}
-	result['data'] = rows
-	result['success'] = 'success'
-	print(result)
-	return str(json.dumps(result))
+# @app.route('/options', methods=['GET'])
+# def options():
+# 	Db = MySQLClass(config['mysql'])
+# 	rows = Db.getAllRows(sql['SELECT.OPTIONS'])
+# 	result = {}
+# 	result['data'] = rows
+# 	result['success'] = 'success'
+# 	print(result)
+# 	return str(json.dumps(result))
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
